@@ -271,11 +271,11 @@ class FormComponent extends Component {
   render() {
     if (this.props.intlInput) {
       return <Components.FormIntl {...this.props} />;
-    } else if (this.props.nestedInput) {
+    } else if ((!this.props.input) && this.props.nestedInput) {
       if (this.isArrayField()) {
-        return <Components.FormNestedArray {...this.props} errors={this.getErrors()} value={this.getValue()}/>;
-      } else if (this.isObjectField()) {
-        return <Components.FormNestedObject {...this.props} errors={this.getErrors()} value={this.getValue()}/>;
+        return <Components.FormNestedArray {...this.props} errors={this.getErrors()} value={this.getValue()} />;
+      } else if ((!this.props.input) && this.isObjectField()) {
+        return <Components.FormNestedObject {...this.props} errors={this.getErrors()} value={this.getValue()} />;
       }
     }
     return (
